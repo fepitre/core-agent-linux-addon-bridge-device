@@ -1,0 +1,5 @@
+qubes-core-agent-linux-addon-bridge-device (4.0.0-1) unstable; urgency=medium
+
+  * Initial commit.
+
+ -- Frédéric Pierret <frederic.pierret@qubes-os.org>  Sun, 30 Jun 2019 10:30:29 +0200

@@ -1,0 +1,22 @@
+Source: qubes-core-agent-linux-addon-bridge-device
+Section: admin
+Priority: optional
+Maintainer: Frédéric Pierret <frederic.pierret@qubes-os.org>
+Standards-Version: 3.9.8
+Homepage: https://www.qubes-os.org/
+Build-Depends: debhelper (>= 9~), quilt
+
+Package: qubes-core-agent-bridge-device
+Architecture: any
+Depends: bridge-utils
+Description: qubes-core-agent-linux extension for handling Bridge Device
+
+Package: qubes-core-agent-bridge-device-networking
+Architecture: any
+Depends: qubes-core-agent-bridge-device
+Description: qubes-core-agent-linux extension for handling Bridge Device with 'ifupdown'
+
+Package: qubes-core-agent-bridge-device-network-manager
+Architecture: any
+Depends: qubes-core-agent-bridge-device, network-manager
+Description: qubes-core-agent-linux extension for handling Bridge Device with 'NetworkManager'

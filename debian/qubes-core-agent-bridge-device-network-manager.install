@@ -1,0 +1,2 @@
+etc/NetworkManager/dispatcher.d/pre-up.d/publish-bridge
+etc/NetworkManager/dispatcher.d/pre-down.d/publish-bridge

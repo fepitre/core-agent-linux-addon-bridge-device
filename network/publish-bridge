@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# NetworkManager defines 'IF' and 'STATUS'
+if [ -z "$IFACE" ] && [ -n "$1" ]; then
+    IFACE="$1"
+fi
+
+if [ -z "$MODE" ] && [ -n "$2" ]; then
+    MODE="$2"
+fi
+
+if [ "$MODE" == "start" ] || [ "$MODE" == "pre-up" ]; then
+# Publish bridge name interface into qubesdb in order to inform @adminvm
+# of bridges availables in the current VM
+    if [ -e "/sys/class/net/$IFACE/bridge" ]; then
+        for iface in /sys/class/net/"$IFACE"/brif/*
+        do
+            [[ -e "$iface" ]] || break
+            iface_bridge="$iface_bridge $iface"
+        done
+        desc="$IFACE (bridge_ports: $iface_bridge)"
+        qubesdb-rm "/qubes-bridge-devices/$IFACE/"
+        qubesdb-write "/qubes-bridge-devices/$IFACE/desc" "$desc"
+    fi
+elif [ "$MODE" == "stop" ] || [ "$MODE" == "pre-down" ]; then
+    qubesdb-rm "/qubes-bridge-devices/$IFACE/"
+fi

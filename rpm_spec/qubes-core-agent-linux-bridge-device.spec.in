@@ -1,0 +1,38 @@
+Name:		qubes-core-agent-bridge-device
+Version:	@VERSION@
+Release:	1%{?dist}
+Summary:	qubes-core-agent-linux extension for handling Bridge Device
+
+Group:		Qubes
+License:	GPLv2+
+URL:		https://www.qubes-os.org
+Source0:    %{name}-%{version}.tar.gz
+
+Requires: bridge-utils
+
+%description
+qubes-core-agent-linux extension for handling Bridge Device
+
+%package network-manager
+Summary: qubes-core-agent-linux extension for handling Bridge Device with 'NetworkManager'
+Requires: qubes-core-agent-bridge-device
+Requires: NetworkManager
+
+%description network-manager
+qubes-core-agent-linux extension for handling Bridge Device with 'NetworkManager'
+
+%prep
+%setup -q
+
+%install
+make install-rh DESTDIR=$RPM_BUILD_ROOT
+
+%files
+/usr/lib/qubes/publish-bridge
+
+%files network-manager
+/etc/NetworkManager/dispatcher.d/pre-up.d/publish-bridge
+/etc/NetworkManager/dispatcher.d/pre-down.d/publish-bridge
+
+%changelog
+@CHANGELOG@
