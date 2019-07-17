@@ -13,10 +13,11 @@ if [ "$MODE" == "start" ] || [ "$MODE" == "pre-up" ]; then
 # Publish bridge name interface into qubesdb in order to inform @adminvm
 # of bridges availables in the current VM
     if [ -e "/sys/class/net/$IFACE/bridge" ]; then
+        iface_bridge=()
         for iface in /sys/class/net/"$IFACE"/brif/*
         do
             [[ -e "$iface" ]] || break
-            iface_bridge="$iface_bridge $iface"
+            iface_bridge+=("$(basename "$iface")")
         done
         desc="$IFACE (bridge_ports: $iface_bridge)"
         qubesdb-rm "/qubes-bridge-devices/$IFACE/"
