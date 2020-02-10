@@ -1,5 +1,5 @@
 sudo: required
-dist: xenial
+dist: bionic
 language: python
 python: '3.5'
 install: git clone https://github.com/QubesOS/qubes-builder ~/qubes-builder
@@ -10,22 +10,6 @@ env:
  - DISTS_VM=stretch USE_QUBES_REPO_VERSION=4.1 USE_QUBES_REPO_TESTING=1
  - DISTS_VM=buster USE_QUBES_REPO_VERSION=4.1 USE_QUBES_REPO_TESTING=1
  - DISTS_VM=centos7 USE_QUBES_REPO_VERSION=4.1 USE_QUBES_REPO_TESTING=1
-
-jobs:
-  include:
-    - python: '3.5'
-      install: pip install --quiet -r ci/requirements.txt
-      env: TESTS_ONLY=1
-      script:
-       - ./run-tests
-       - shellcheck -e SC1117 $(grep -l '^#!/bin/\(ba\)\?sh' $(git ls-files))
-      after_success:
-       - codecov
-    - stage: deploy
-      python: '3.5'
-      env: DIST_DOM0=fc29 TESTS_ONLY=
-      script: ~/qubes-builder/scripts/travis-deploy
-
 
 branches:
   except:
