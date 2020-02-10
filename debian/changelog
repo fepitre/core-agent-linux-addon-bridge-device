@@ -1,3 +1,10 @@
+qubes-core-agent-linux-addon-bridge-device (4.0.1-1) unstable; urgency=medium
+
+  * Improve output of bridge_ports
+  * travis: switch to bionic and restrict to builds only
+
+ -- Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org>  Mon, 10 Feb 2020 22:59:13 +0100
+
 qubes-core-agent-linux-addon-bridge-device (4.0.0-1) unstable; urgency=medium
 
   * Initial commit.
