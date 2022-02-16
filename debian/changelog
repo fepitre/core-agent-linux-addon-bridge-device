@@ -1,3 +1,10 @@
+qubes-core-agent-linux-addon-bridge-device (4.0.2-1) unstable; urgency=medium
+
+  * Add gitlab-ci and drop travis-ci
+  * spec: add make BR
+
+ -- Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org>  Wed, 16 Feb 2022 12:08:55 +0100
+
 qubes-core-agent-linux-addon-bridge-device (4.0.1-1) unstable; urgency=medium
 
   * Improve output of bridge_ports
